@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>To Do List</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/todo.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <nav>
+
+    </nav>
+
+    <div id="subheader">
+      <ul>
+        <li class="onyx"></li>
+        <li class="citrine"></li>
+        <li class="emerald"></li>
+        <li class="sapphire"></li>
+        <li class="aqua"></li>
+      </ul>
+    </div>
+
+    <div id="subnav" class="todo">
+      <ul class="todo">
+        <li class="active">To Do List</li>
+        <li>Archive</li>
+      </ul>
+    </div>
+
+    <div id="content">
+      <div id="col1">
+
+        <div class="colTitle">Personal List</div>
+
+        <div id="todoAdd">
+          <h1>Add To-Do List Item</h1>
+
+          <form id="toDoForm">
+            <input id="toDoItem" placeholder="Enter a To-Do list item" />
+            <input id="toDoItemButton" type="submit" value="Add"></submit>
+          </form>
+
+        </div>
+
+        <ul id="toDoList">
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <!-- <script id="to-do-template" type="text/x-handlebars-template">
+      <li class="personal">
+        <div class="number">{{number}}</div>
+        <div class="todoItem">{{toDo}}</div>
+        <a href="#" class="delete"></a>
+        <a href="#" class="status incomplete"></a>
+      </li>
+    </script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script src="js/todo_firebase.js"></script>
+    <!-- <script src="js/todo.js" type="text/javascript" charset="utf-8" async defer></script> -->
+  </body>
+</html>

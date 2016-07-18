@@ -1,0 +1,116 @@
+/* TO DO */
+
+#subnav.todo {
+  background: #9DCC00;
+}
+
+#todoAdd {
+  width: 100%;
+  background: #EEE;
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 20px;
+  display: block;
+}
+
+#todoAdd h1 {
+  font-size: 16px;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+#todoAdd input {
+  width: 95%;
+  height: 35px;
+  background: #DDD;
+  border: none;
+  padding-left: 10px;
+}
+
+#todoAdd #toDoItemButton {
+  width: auto;
+  height 35px;
+  padding: 0 10px;
+  color: #FFF;
+  border-radius: 5px;
+  background: #8DB800;
+  float: right;
+
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+#todoAdd #toDoItemButton:hover {
+  background: #799600;
+}
+
+#col1 {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+ul#toDoList {
+  list-style: none;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+li.personal {
+  background-color: #8DB800;
+  min-height: 50px;
+  margin-bottom: 1px;
+  list-style: none;
+}
+
+li.personal:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+li.personal:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.colTitle {
+  margin: 0 0 15px 0;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.number {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+  background: rgba(0,0,0,0.6);
+  text-align: center;
+  color: #FFF;
+  margin: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.client {
+  width: 78%;
+  margin: 16px 0 15px 0;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.todoItem {
+  width: 78%;
+  margin: 16px 0 15px 0;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.completed {
+  background: #CCC!important;
+  color: #AAA!important;
+}
