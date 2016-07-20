@@ -1,6 +1,16 @@
 var source = $("#toDoTemplate").html();
 var template = Handlebars.compile(source);
 
+
+
+
+// Set number as 1
+// Each time a toDo item is added, ++
+// Get new toDo item value and ++
+// Update new toDo item value in firebase
+
+var toDoNumber = 1;
+
 $(document).ready(function() {
 
   // Initialize Firebase
@@ -13,7 +23,7 @@ $(document).ready(function() {
 
   firebase.initializeApp(config);
 
-  var messageAppReference = firebase.database();
+  var toDoAppReference = firebase.database();
 
   firebase.auth().signInAnonymously().catch(function(error) {
     // Handle Errors here.
@@ -28,19 +38,25 @@ $(document).ready(function() {
       event.preventDefault()
 
       // grab user message input
-      var message = $('#toDoItem').val()
+      var toDoItem = $('#toDoItem').val()
 
       // clear message input (for UX purposes)
       $('#toDoItem').val('')
 
-      // create a section for messages data in your db
-      var messagesReference = messageAppReference.ref('messages');
+      // create a section for toDo data in your db
+      var dataReference = toDoAppReference.ref('toDo');
 
-      // use the set method to save data to the messages
-      messagesReference.push({
-        message: message,
-        votes: 0
+      // use the set method to save data to the toDo
+      dataReference.push({
+        toDoItem: toDoItem,
+        toDoNumber: toDoNumber
       })
+
+      // toDoNumber++
+
+      // updateNumbers();
+
+
   });
 
   $('#toDoForm').keypress(function(event) {
@@ -51,19 +67,24 @@ $(document).ready(function() {
       event.preventDefault()
 
       // grab user message input
-      var message = $('#toDoItem').val()
+      var toDoItem = $('#toDoItem').val()
 
       // clear message input (for UX purposes)
       $('#toDoItem').val('')
 
-      // create a section for messages data in your db
-      var messagesReference = messageAppReference.ref('messages');
+      // create a section for toDo data in your db
+      var dataReference = toDoAppReference.ref('toDo');
 
-      // use the set method to save data to the messages
-      messagesReference.push({
-        message: message,
-        votes: 0
+      // use the set method to save data to the toDo
+      dataReference.push({
+        toDoItem: toDoItem,
+        toDoNumber: toDoNumber
       })
+
+      // toDoNumber++
+
+      // updateNumbers();
+
     }
 });
 
@@ -78,63 +99,78 @@ $(document).ready(function() {
   //   var votes = $(event.target.parentNode).attr('data-votes');
   //   updateMessage(id, parseInt(votes) - 1);
   // });
-  //
-  // $('.message-board').on('click', 'li .fa-remove', function(event) {
-  //   var id = $(event.target.parentNode).attr('data-id');
-  //   deleteMessage(id);
-  // });
+
+  $('#toDoList').on('click', 'li .delete', function(event) {
+    console.log('Delete Clicked');
+
+    var id = $(event.target.parentNode).attr('data-id');
+    deleteMessage(id);
+    // updateNumbers();
+  });
 
   function getFanMessages() {
 
-    // use reference to app database to listen for changes in messages data
-    messageAppReference.ref('messages').on('value', function(results) {
+    // use reference to app database to listen for changes in toDo data
+    toDoAppReference.ref('toDo').on('value', function(results) {
 
       $('#toDoList li').remove();
 
-      // iterate through results coming from database call - ie messages
-      results.forEach(function (fbMessage) {
-        var msg = fbMessage.val().message;
-        // var votes = fbMessage.val().votes;
+      // iterate through results coming from database call - ie toDo
+      results.forEach(function (firebaseData) {
+        var toDoItem = firebaseData.val().toDoItem;
+        var toDoNumber = firebaseData.val().toDoNumber;
 
         // Add Id as data attr so we can refer to later for updating
-        // $newList.attr('data-id', fbMessage.key);
         // $newList.attr('data-votes', votes);
 
         // Templating
-        var articleContent = {
-          toDo: msg
-          // number: toDoNumber
+        var toDoData = {
+          toDo: toDoItem,
+          itemNumber: toDoNumber
         };
-        console.log('toDo:', articleContent.toDo);
+
+        console.log('toDo:', toDoData.toDo);
 
         // Handlbars Templates
-        var templateHtml = template(articleContent);
+        var templateHtml = template(toDoData);
 
-        // Create jQuery object
         var $html = $(templateHtml);
+        $html.attr('data-id', firebaseData.key);
 
-        $('#toDoList').append(templateHtml);
+        $('#toDoList').append($html);
 
-        });
+        // console.log(templateHtml);
+
+      });
 
     });
   }
 
   // function updateMessage(id, votes) {
   //   // find message whose objectId is equal to the id we're searching with
-  //   var messageReference =  messageAppReference.ref('messages').child(id);
+  //   var messageReference =  toDoAppReference.ref('toDo').child(id);
   //
   //   // update votes property
   //   messageReference.update({
   //     votes: votes
   //   })
   // }
+
+  function deleteMessage(id) {
+    // find message whose objectId is equal to the id we're searching with
+    var toDoReference = toDoAppReference.ref('toDo/' + id)
+
+    toDoReference.remove();
+  }
+
+
+  // function updateNumbers() {
+  //   //get all .number's and iterate over them
+  //   //using the index of the iterator, update the numbers.
   //
-  // function deleteMessage(id) {
-  //   // find message whose objectId is equal to the id we're searching with
-  //   var messageReference = messageAppReference.ref('messages/' + id)
+  //   $('.number').forEach(function(i) {
   //
-  //   messageReference.remove();
+  //   });
   // }
 
   getFanMessages();
