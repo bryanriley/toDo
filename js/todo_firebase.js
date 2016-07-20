@@ -96,29 +96,9 @@ $(document).ready(function() {
         var msg = fbMessage.val().message;
         // var votes = fbMessage.val().votes;
 
-        // load the results into the DOM
-        console.log('msg:', msg);
-
-        // Create new jQuery object of list
-        var $newList = ($('<li class="personal"></li>'));
-
         // Add Id as data attr so we can refer to later for updating
-        $newList.attr('data-id', fbMessage.key);
+        // $newList.attr('data-id', fbMessage.key);
         // $newList.attr('data-votes', votes);
-
-        // Add msg to Li
-        $newList.html(template);
-
-        //show votes
-        // $newList.append('<i style="padding: 0px 5px;" class="fa fa-thumbs-up" aria-hidden="true"></i><i style="padding: 0px 5px;" class="fa fa-thumbs-down" aria-hidden="true"></i><i style="padding: 0px 5px;" class="fa fa-remove" aria-hidden="true"></i><div class="pull-right">' + votes + '</div>');
-
-        // add message to list
-        $('#toDoList').append($newList);
-
-        // var toDoNumber = 1;
-        //
-        // toDoNumber++
-
 
         // Templating
         var articleContent = {
@@ -132,10 +112,9 @@ $(document).ready(function() {
 
         // Create jQuery object
         var $html = $(templateHtml);
-        console.log(templateHtml);
-        // console.log($(html));
 
-        // $("#main").append($html);
+        $('#toDoList').append(templateHtml);
+
         });
 
     });
