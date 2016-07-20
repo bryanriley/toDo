@@ -31,7 +31,7 @@
     <div id="subnav" class="todo">
       <ul class="todo">
         <li class="active">To Do List</li>
-        <li>Archive</li>
+        <li>Summary</li>
       </ul>
     </div>
 
@@ -50,22 +50,18 @@
 
         </div>
 
-        <ul id="toDoList">
-
-        </ul>
+        <ul id="toDoList"></ul>
 
       </div>
 
     </div>
 
-    <!-- <script id="to-do-template" type="text/x-handlebars-template">
-      <li class="personal">
-        <div class="number">{{number}}</div>
-        <div class="todoItem">{{toDo}}</div>
-        <a href="#" class="delete"></a>
-        <a href="#" class="status incomplete"></a>
-      </li>
-    </script> -->
+    <script id="toDoTemplate" type="text/x-handlebars-template">
+      <div class="number">{{number}}</div>
+      <div class="todoItem">{{toDo}}</div>
+      <a href="#" class="delete"></a>
+      <a href="#" class="status incomplete"></a>
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

@@ -1,13 +1,5 @@
-'use strict';
-var toDoList = {};
-
-// Compile element using handlebars
-toDoList.compileItem = function(item) {
-  var source = $('#to-do-template').html();
-  var template = Handlebars.compile(source);
-  return template(item);
-}
-
+var source = $("#toDoTemplate").html();
+var template = Handlebars.compile(source);
 
 $(document).ready(function() {
 
@@ -75,6 +67,22 @@ $(document).ready(function() {
     }
 });
 
+  // $('.message-board').on('click', 'li .fa-thumbs-up', function(event) {
+  //   var id = $(event.target.parentNode).attr('data-id');
+  //   var votes = $(event.target.parentNode).attr('data-votes');
+  //   updateMessage(id, parseInt(votes) + 1);
+  // });
+  //
+  // $('.message-board').on('click', 'li .fa-thumbs-down', function(event) {
+  //   var id = $(event.target.parentNode).attr('data-id');
+  //   var votes = $(event.target.parentNode).attr('data-votes');
+  //   updateMessage(id, parseInt(votes) - 1);
+  // });
+  //
+  // $('.message-board').on('click', 'li .fa-remove', function(event) {
+  //   var id = $(event.target.parentNode).attr('data-id');
+  //   deleteMessage(id);
+  // });
 
   function getFanMessages() {
 
@@ -86,48 +94,69 @@ $(document).ready(function() {
       // iterate through results coming from database call - ie messages
       results.forEach(function (fbMessage) {
         var msg = fbMessage.val().message;
-        var votes = fbMessage.val().votes;
+        // var votes = fbMessage.val().votes;
 
         // load the results into the DOM
-        console.log(msg);
+        console.log('msg:', msg);
 
         // Create new jQuery object of list
-        var $newList = $('<li class="personal"></li>');
+        var $newList = ($('<li class="personal"></li>'));
 
         // Add Id as data attr so we can refer to later for updating
         $newList.attr('data-id', fbMessage.key);
-        $newList.attr('data-votes', votes);
+        // $newList.attr('data-votes', votes);
 
         // Add msg to Li
-        $newList.html(msg);
+        $newList.html(template);
 
-        // //show votes
-        $newList.append('<div class="number">{{number}}</div><div class="todoItem">{{toDo}}</div><a href="#" class="delete"></a><a href="#" class="status incomplete"></a>');
+        //show votes
+        // $newList.append('<i style="padding: 0px 5px;" class="fa fa-thumbs-up" aria-hidden="true"></i><i style="padding: 0px 5px;" class="fa fa-thumbs-down" aria-hidden="true"></i><i style="padding: 0px 5px;" class="fa fa-remove" aria-hidden="true"></i><div class="pull-right">' + votes + '</div>');
 
         // add message to list
         $('#toDoList').append($newList);
 
-      });
+        // var toDoNumber = 1;
+        //
+        // toDoNumber++
+
+
+        // Templating
+        var articleContent = {
+          toDo: msg
+          // number: toDoNumber
+        };
+        console.log('toDo:', articleContent.toDo);
+
+        // Handlbars Templates
+        var templateHtml = template(articleContent);
+
+        // Create jQuery object
+        var $html = $(templateHtml);
+        console.log(templateHtml);
+        // console.log($(html));
+
+        // $("#main").append($html);
+        });
 
     });
   }
 
-  function updateMessage(id, votes) {
-    // find message whose objectId is equal to the id we're searching with
-    var messageReference =  messageAppReference.ref('messages').child(id);
-
-    // update votes property
-    messageReference.update({
-      votes: votes
-    })
-  }
-
-  function deleteMessage(id) {
-    // find message whose objectId is equal to the id we're searching with
-    var messageReference = messageAppReference.ref('messages/' + id)
-
-    messageReference.remove();
-  }
+  // function updateMessage(id, votes) {
+  //   // find message whose objectId is equal to the id we're searching with
+  //   var messageReference =  messageAppReference.ref('messages').child(id);
+  //
+  //   // update votes property
+  //   messageReference.update({
+  //     votes: votes
+  //   })
+  // }
+  //
+  // function deleteMessage(id) {
+  //   // find message whose objectId is equal to the id we're searching with
+  //   var messageReference = messageAppReference.ref('messages/' + id)
+  //
+  //   messageReference.remove();
+  // }
 
   getFanMessages();
 
