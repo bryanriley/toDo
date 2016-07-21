@@ -25,8 +25,7 @@ $(document).ready(function() {
   });
 
   $('#toDoForm').submit(function(event) {
-      // by default a form submit reloads the DOM which will subsequently reload all our JS
-      // to avoid this we preventDefault()
+    
       event.preventDefault();
 
       // grab user message input
@@ -40,8 +39,8 @@ $(document).ready(function() {
 
       // use the set method to save data to the toDo
       dataReference.push({
-        toDoItem: toDoItem
-        // toDoNumber: toDoNumber
+        toDoItem: toDoItem,
+        toDoStatus: 'Incomplete'
       })
 
       updateNumbers();
@@ -52,8 +51,7 @@ $(document).ready(function() {
   $('#toDoForm').keypress(function(event) {
 
     if(event.which == 13) {
-      // by default a form submit reloads the DOM which will subsequently reload all our JS
-      // to avoid this we preventDefault()
+
       event.preventDefault();
 
       // grab user message input
@@ -67,8 +65,8 @@ $(document).ready(function() {
 
       // use the set method to save data to the toDo
       dataReference.push({
-        toDoItem: toDoItem
-        // toDoNumber: toDoNumber
+        toDoItem: toDoItem,
+        toDoStatus: 'Incomplete'
       })
 
       updateNumbers();
@@ -101,17 +99,16 @@ $(document).ready(function() {
     event.preventDefault();
     console.log('Incomplete Clicked');
 
+    var id = $(event.target.parentNode).attr('data-id');
+    var votes = $(event.target.parentNode).attr('data-votes');
+    updateMessage(id, parseInt(votes) + 1);
+
     $(this).toggleClass();
     $(this).addClass('complete');
     var listItem = $(this).parent('li');
     $(listItem).addClass('completed');
 
-    dataReference.push({
-      toDoComplete: toDoComplete
-    })
-
     // var id = $(event.target.parentNode).attr('data-id');
-    // deleteMessage(id);
   });
 
   function getToDoListItems() {
@@ -124,7 +121,8 @@ $(document).ready(function() {
       // iterate through results coming from database call - ie toDo
       results.forEach(function (firebaseData) {
         var toDoItem = firebaseData.val().toDoItem;
-        // var toDoNumber = firebaseData.val().toDoNumber;
+        var votes = firebaseData.val().votes;
+
         var toDoNumber = 1;
 
         // Add Id as data attr so we can refer to later for updating
@@ -136,13 +134,14 @@ $(document).ready(function() {
           itemNumber: toDoNumber
         };
 
-        console.log('toDo:', toDoData.toDo);
+        // console.log('toDo:', toDoData.toDo);
 
         // Handlbars Templates
         var templateHtml = template(toDoData);
 
         var $html = $(templateHtml);
         $html.attr('data-id', firebaseData.key);
+        $html.attr('data-votes', votes);
 
         $('#toDoList').append($html);
 
@@ -156,15 +155,17 @@ $(document).ready(function() {
     });
   }
 
-  // function updateMessage(id, votes) {
-  //   // find message whose objectId is equal to the id we're searching with
-  //   var messageReference =  toDoAppReference.ref('toDo').child(id);
-  //
-  //   // update votes property
-  //   messageReference.update({
-  //     votes: votes
-  //   })
-  // }
+  function updateMessage(id, votes) {
+    // find message whose objectId is equal to the id we're searching with
+    var toDoReference =  toDoAppReference.ref('toDo').child(id);
+
+    // update votes property
+    toDoReference.update({
+      votes: votes
+    })
+
+    console.log('Updated');
+  }
 
   function deleteMessage(id) {
     // find message whose objectId is equal to the id we're searching with
