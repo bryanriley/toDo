@@ -25,7 +25,7 @@ $(document).ready(function() {
   });
 
   $('#toDoForm').submit(function(event) {
-    
+
       event.preventDefault();
 
       // grab user message input
@@ -44,7 +44,6 @@ $(document).ready(function() {
       })
 
       updateNumbers();
-
 
   });
 
@@ -92,7 +91,6 @@ $(document).ready(function() {
 
     var id = $(event.target.parentNode).attr('data-id');
     deleteMessage(id);
-    // updateNumbers();
   });
 
   $('#toDoList').on('click', 'li .incomplete', function(event) {
@@ -100,15 +98,29 @@ $(document).ready(function() {
     console.log('Incomplete Clicked');
 
     var id = $(event.target.parentNode).attr('data-id');
-    var votes = $(event.target.parentNode).attr('data-votes');
-    updateMessage(id, parseInt(votes) + 1);
+    var toDoStatus = $(event.target.parentNode).attr('data-toDoStatus');
+    updateCompleteMessage(id, parseInt(toDoStatus));
 
     $(this).toggleClass();
-    $(this).addClass('complete');
+    $(this).toggleClass('complete');
     var listItem = $(this).parent('li');
     $(listItem).addClass('completed');
 
-    // var id = $(event.target.parentNode).attr('data-id');
+  });
+
+  $('#toDoList').on('click', 'li .complete', function(event) {
+    event.preventDefault();
+    console.log('Complete Clicked');
+
+    var id = $(event.target.parentNode).attr('data-id');
+    var toDoStatus = $(event.target.parentNode).attr('data-toDoStatus');
+    updateIncompleteMessage(id, parseInt(toDoStatus));
+
+    $(this).toggleClass();
+    $(this).toggleClass('complete');
+    var listItem = $(this).parent('li');
+    $(listItem).removeClass('completed');
+
   });
 
   function getToDoListItems() {
@@ -121,12 +133,9 @@ $(document).ready(function() {
       // iterate through results coming from database call - ie toDo
       results.forEach(function (firebaseData) {
         var toDoItem = firebaseData.val().toDoItem;
-        var votes = firebaseData.val().votes;
+        var toDoStatus = firebaseData.val().toDoStatus;
 
         var toDoNumber = 1;
-
-        // Add Id as data attr so we can refer to later for updating
-        // $newList.attr('data-votes', votes);
 
         // Templating
         var toDoData = {
@@ -141,11 +150,21 @@ $(document).ready(function() {
 
         var $html = $(templateHtml);
         $html.attr('data-id', firebaseData.key);
-        $html.attr('data-votes', votes);
+        $html.attr('data-toDoStatus', toDoStatus);
+
+        // if ($('#toDoList li').data("todostatus") === 'Complete') {
+        //   console.log('11');
+        //     $('li.personal').addClass('completed');
+        // } else if ($('#toDoList li').data("todostatus") === 'Incomplete') {
+        //   console.log('aa');
+        // } else {
+        //   console.log('bb');
+        // }
 
         $('#toDoList').append($html);
 
         updateNumbers();
+        updateStatus();
         $('#popUp').addClass('hidden');
 
         // console.log(templateHtml);
@@ -155,16 +174,27 @@ $(document).ready(function() {
     });
   }
 
-  function updateMessage(id, votes) {
+  function updateCompleteMessage(id, toDoStatus) {
     // find message whose objectId is equal to the id we're searching with
     var toDoReference =  toDoAppReference.ref('toDo').child(id);
 
     // update votes property
     toDoReference.update({
-      votes: votes
+      toDoStatus: 'Complete'
     })
 
-    console.log('Updated');
+  }
+
+  function updateIncompleteMessage(id, toDoStatus) {
+    // find message whose objectId is equal to the id we're searching with
+    var toDoReference =  toDoAppReference.ref('toDo').child(id);
+
+    // update votes property
+    toDoReference.update({
+      toDoStatus: 'Incomplete'
+    })
+
+
   }
 
   function deleteMessage(id) {
@@ -176,15 +206,28 @@ $(document).ready(function() {
 
 
   function updateNumbers() {
-    //get all .number's and iterate over them
-    //using the index of the iterator, update the numbers.
-
     $('.number').each(function(i) {
       if (i === 1) {
         return;
       }
       $(this).text(i);
-      // console.log(i);
+    });
+  }
+
+  function updateStatus() {
+
+    $('li[data-todostatus="Complete"]').addClass('completed');
+    $('li[data-todostatus="Incomplete"]').removeClass('completed');
+
+    // if ($('#toDoList li').data("todostatus") === 'Complete') {
+    //   $('.status').addClass('complete');
+    // }
+
+    $('#toDoList li').each(function() {
+      if ($(this).data('todostatus') === 'Complete') {
+        $(this).children('.status').addClass('complete');
+        console.log('TEST');
+      }
     });
 
   }
