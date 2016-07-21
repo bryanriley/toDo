@@ -1,7 +1,7 @@
 /* TO DO */
 
 #subnav.todo {
-  background: #9DCC00;
+  background: #77E3E2;
 }
 
 #todoAdd {
@@ -31,9 +31,9 @@
   width: auto;
   height 35px;
   padding: 0 10px;
-  color: #FFF;
+  color: #333;
   border-radius: 5px;
-  background: #8DB800;
+  background: #77E3E2;
   float: right;
 
   -webkit-transition: all 0.2s ease;
@@ -44,7 +44,7 @@
 }
 
 #todoAdd #toDoItemButton:hover {
-  background: #799600;
+  background: #2AB8B7;
 }
 
 #col1 {
@@ -61,7 +61,7 @@ ul#toDoList {
 }
 
 li.personal {
-  background-color: #8DB800;
+  background-color: #77E3E2;
   min-height: 50px;
   margin-bottom: 1px;
   list-style: none;
@@ -113,4 +113,21 @@ li.personal:last-child {
 .completed {
   background: #CCC!important;
   color: #AAA!important;
+}
+
+/* LOADER */
+
+#popUp {
+  opacity: 0.8;
+  position: absolute;
+  width: 90%;
+  height: 60%;
+  background: #FFF;
+  margin: 0 auto;
+}
+
+#popUp.loader {
+  background-image: url(../images/ripple.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
 }

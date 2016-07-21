@@ -1,15 +1,7 @@
 var source = $("#toDoTemplate").html();
 var template = Handlebars.compile(source);
 
-
-
-
-// Set number as 1
-// Each time a toDo item is added, ++
-// Get new toDo item value and ++
-// Update new toDo item value in firebase
-
-var toDoNumber = 1;
+$('#popUp').removeClass('hidden');
 
 $(document).ready(function() {
 
@@ -35,7 +27,7 @@ $(document).ready(function() {
   $('#toDoForm').submit(function(event) {
       // by default a form submit reloads the DOM which will subsequently reload all our JS
       // to avoid this we preventDefault()
-      event.preventDefault()
+      event.preventDefault();
 
       // grab user message input
       var toDoItem = $('#toDoItem').val()
@@ -48,13 +40,11 @@ $(document).ready(function() {
 
       // use the set method to save data to the toDo
       dataReference.push({
-        toDoItem: toDoItem,
-        toDoNumber: toDoNumber
+        toDoItem: toDoItem
+        // toDoNumber: toDoNumber
       })
 
-      // toDoNumber++
-
-      // updateNumbers();
+      updateNumbers();
 
 
   });
@@ -64,7 +54,7 @@ $(document).ready(function() {
     if(event.which == 13) {
       // by default a form submit reloads the DOM which will subsequently reload all our JS
       // to avoid this we preventDefault()
-      event.preventDefault()
+      event.preventDefault();
 
       // grab user message input
       var toDoItem = $('#toDoItem').val()
@@ -77,13 +67,11 @@ $(document).ready(function() {
 
       // use the set method to save data to the toDo
       dataReference.push({
-        toDoItem: toDoItem,
-        toDoNumber: toDoNumber
+        toDoItem: toDoItem
+        // toDoNumber: toDoNumber
       })
 
-      // toDoNumber++
-
-      // updateNumbers();
+      updateNumbers();
 
     }
 });
@@ -101,6 +89,7 @@ $(document).ready(function() {
   // });
 
   $('#toDoList').on('click', 'li .delete', function(event) {
+    event.preventDefault();
     console.log('Delete Clicked');
 
     var id = $(event.target.parentNode).attr('data-id');
@@ -108,7 +97,24 @@ $(document).ready(function() {
     // updateNumbers();
   });
 
-  function getFanMessages() {
+  $('#toDoList').on('click', 'li .incomplete', function(event) {
+    event.preventDefault();
+    console.log('Incomplete Clicked');
+
+    $(this).toggleClass();
+    $(this).addClass('complete');
+    var listItem = $(this).parent('li');
+    $(listItem).addClass('completed');
+
+    dataReference.push({
+      toDoComplete: toDoComplete
+    })
+
+    // var id = $(event.target.parentNode).attr('data-id');
+    // deleteMessage(id);
+  });
+
+  function getToDoListItems() {
 
     // use reference to app database to listen for changes in toDo data
     toDoAppReference.ref('toDo').on('value', function(results) {
@@ -118,7 +124,8 @@ $(document).ready(function() {
       // iterate through results coming from database call - ie toDo
       results.forEach(function (firebaseData) {
         var toDoItem = firebaseData.val().toDoItem;
-        var toDoNumber = firebaseData.val().toDoNumber;
+        // var toDoNumber = firebaseData.val().toDoNumber;
+        var toDoNumber = 1;
 
         // Add Id as data attr so we can refer to later for updating
         // $newList.attr('data-votes', votes);
@@ -138,6 +145,9 @@ $(document).ready(function() {
         $html.attr('data-id', firebaseData.key);
 
         $('#toDoList').append($html);
+
+        updateNumbers();
+        $('#popUp').addClass('hidden');
 
         // console.log(templateHtml);
 
@@ -164,15 +174,20 @@ $(document).ready(function() {
   }
 
 
-  // function updateNumbers() {
-  //   //get all .number's and iterate over them
-  //   //using the index of the iterator, update the numbers.
-  //
-  //   $('.number').forEach(function(i) {
-  //
-  //   });
-  // }
+  function updateNumbers() {
+    //get all .number's and iterate over them
+    //using the index of the iterator, update the numbers.
 
-  getFanMessages();
+    $('.number').each(function(i) {
+      if (i === 1) {
+        return;
+      }
+      $(this).text(i);
+      // console.log(i);
+    });
+
+  }
+
+  getToDoListItems();
 
 });
