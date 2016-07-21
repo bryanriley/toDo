@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <nav>
+    <!-- <nav>
 
-    </nav>
+    </nav> -->
 
     <div id="subheader">
       <ul>
@@ -28,25 +28,33 @@
       </ul>
     </div>
 
-    <div id="subnav" class="todo">
+    <!-- <div id="subnav" class="todo">
       <ul class="todo">
         <li class="active">To Do List</li>
         <li>Summary</li>
       </ul>
-    </div>
+    </div> -->
 
     <div id="content">
       <div id="col1">
 
-        <div class="colTitle">Personal List</div>
+        <!-- <div class="colTitle">Personal List</div> -->
 
         <div id="todoAdd">
           <h1>Add To-Do List Item</h1>
 
           <form id="toDoForm">
-            <input id="toDoItem" placeholder="Enter a To-Do list item" />
+            <input id="toDoItem" placeholder="Enter a To-Do list item" autocomplete="off"/>
             <input id="toDoItemButton" type="submit" value="Add"></submit>
           </form>
+
+        </div>
+
+        <div id="todoProgress">
+          <h1>Progress</h1>
+          <div id="progressContainer">
+              <div id="progressBar"></div>
+          </div>
 
         </div>
 

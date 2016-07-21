@@ -8,7 +8,7 @@
   width: 100%;
   background: #EEE;
   border-radius: 5px;
-  margin: 20px 0;
+  margin: 30px 0;
   padding: 20px;
   display: block;
 }
@@ -47,10 +47,36 @@
   background: #2AB8B7;
 }
 
+#todoProgress {
+  width: 100%;
+  background: #EEE;
+  border-radius: 5px;
+  margin: 30px 0;
+  padding: 20px;
+  display: block;
+}
+
+#todoProgress h1 {
+  font-size: 16px;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+#progressContainer {
+  height: 10px;
+  width: 100%;
+  background: #DDD;
+}
+
+#progressBar {
+  height: 10px;
+  width: 0%;
+  background: #77E3E2;
+}
+
 #col1 {
   width: 100%;
   height: auto;
-  margin-top: 20px;
   display: inline-block;
 }
 

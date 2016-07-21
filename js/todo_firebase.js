@@ -43,8 +43,6 @@ $(document).ready(function() {
         toDoStatus: 'Incomplete'
       })
 
-      updateNumbers();
-
   });
 
   $('#toDoForm').keypress(function(event) {
@@ -68,22 +66,8 @@ $(document).ready(function() {
         toDoStatus: 'Incomplete'
       })
 
-      updateNumbers();
-
     }
 });
-
-  // $('.message-board').on('click', 'li .fa-thumbs-up', function(event) {
-  //   var id = $(event.target.parentNode).attr('data-id');
-  //   var votes = $(event.target.parentNode).attr('data-votes');
-  //   updateMessage(id, parseInt(votes) + 1);
-  // });
-  //
-  // $('.message-board').on('click', 'li .fa-thumbs-down', function(event) {
-  //   var id = $(event.target.parentNode).attr('data-id');
-  //   var votes = $(event.target.parentNode).attr('data-votes');
-  //   updateMessage(id, parseInt(votes) - 1);
-  // });
 
   $('#toDoList').on('click', 'li .delete', function(event) {
     event.preventDefault();
@@ -171,6 +155,8 @@ $(document).ready(function() {
 
       });
 
+      updateProgress();
+
     });
   }
 
@@ -226,9 +212,20 @@ $(document).ready(function() {
     $('#toDoList li').each(function() {
       if ($(this).data('todostatus') === 'Complete') {
         $(this).children('.status').addClass('complete');
-        console.log('TEST');
       }
     });
+
+  }
+
+  function updateProgress() {
+    var toDoProgress = $("li.completed").length * 10;
+    var toDoCount = $("#toDoList li").length * 10;
+    var totalProgress = toDoProgress/toDoCount * 100;
+    console.log(toDoProgress);
+    console.log(toDoCount);
+    console.log(totalProgress);
+
+    $('#progressBar').animate({width: (totalProgress) + '%' }, 1000);
 
   }
 
