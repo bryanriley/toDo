@@ -17,16 +17,49 @@ $(document).ready(function() {
 
   var toDoAppReference = firebase.database();
 
-  firebase.auth().signInAnonymously().catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
+  // firebase.auth().signInAnonymously().catch(function(error) {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  // });
+
+  // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  //   console.log(errorCode);
+  //   console.log(errorMessage);
+  // });
+
+  $('#registerCreate').click(function(event) {
+      var name = $('#registerName').val();
+      var email = $('#registerEmailAddress').val();
+      var password = $('#registerPassword').val();
+      $('#registerName').val('');
+      $('#registerEmailAddress').val('');
+      $('#registerPassword').val('');
+      console.log(name);
+      console.log(password);
+      console.log(email);
+      event.preventDefault();
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        $('#registerError').show();
+        $('#registerError').append(errorMessage)
+      });
   });
+
+  // firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  // });
 
   $('#toDoForm').submit(function(event) {
       event.preventDefault();
-      var toDoItem = $('#toDoItem').val()
-      $('#toDoItem').val('')
+      var toDoItem = $('#toDoItem').val();
+      $('#toDoItem').val('');
       var dataReference = toDoAppReference.ref('toDo');
       dataReference.push({
         toDoItem: toDoItem,

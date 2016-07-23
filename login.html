@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>To Do List - Login</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/todo.css" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css" />
+
+  </head>
+  <body>
+
+    <div id="subheader">
+      <ul>
+        <li class="aqua"></li>
+      </ul>
+    </div>
+
+    <div id="content">
+      <div id="login">
+
+        <div class="form">
+          <form class="register-form">
+            <input id="registerName" type="text" placeholder="name"/>
+            <input id="registerPassword" type="password" placeholder="password"/>
+            <input id="registerEmailAddress" type="text" placeholder="email address"/>
+            <div id="registerError"></div>
+            <button id="registerCreate">Create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+          </form>
+          <form class="login-form">
+            <input id="loginEmailAddress" type="text" placeholder="emailaddress"/>
+            <input id="loginPassword" type="password" placeholder="password"/>
+            <button>Login</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <script id="toDoTemplate" type="text/x-handlebars-template">
+      <li class="personal">
+        <div class="number">{{itemNumber}}</div>
+        <div class="todoItem">{{toDo}}</div>
+        <a href="#" class="delete"></a>
+        <a href="#" class="status incomplete"></a>
+      </li>
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script src="js/todo_firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
+  </body>
+</html>
