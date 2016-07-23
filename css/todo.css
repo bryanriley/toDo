@@ -171,7 +171,7 @@ li.personal:last-child {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
-  font-family: "Roboto", sans-serif;
+  font-family: Arial, sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -182,8 +182,7 @@ li.personal:last-child {
   font-size: 14px;
 }
 .form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
+  font-family: Arial, sans-serif;
   outline: 0;
   background: #81C4F2;
   width: 100%;
@@ -193,6 +192,8 @@ li.personal:last-child {
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
+  border-radius: 5px;
+
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
@@ -231,4 +232,31 @@ li.personal:last-child {
   display: none;
   margin-bottom: 13px;
   color: #EE3B33;
+}
+
+#loginDetails {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  line-height: 40px;
+  left: 5%;
+  position: absolute;
+  color: #CCC;
+  display: none;
+}
+
+#loginEmail {
+  color: #81C4F2;
+}
+
+#signout {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-decoration: underline;
+  float: right;
+  line-height: 40px;
+  right: 5%;
+  position: absolute;
+  color: #81C4F2;
+  display: none;
 }

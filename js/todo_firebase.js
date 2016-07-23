@@ -7,21 +7,26 @@ $(document).ready(function() {
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyB1U2ekfGtzjTR6D4KpK4EDnNDl8MXyG-U",
-    authDomain: "todo-fbda0.firebaseapp.com",
-    databaseURL: "https://todo-fbda0.firebaseio.com",
-    storageBucket: "todo-fbda0.appspot.com",
+    apiKey: "AIzaSyDdLnV85rhpGwpqjMtwhkoj4Q2kqaEdj_8",
+    authDomain: "todolist-14bd8.firebaseapp.com",
+    databaseURL: "https://todolist-14bd8.firebaseio.com",
+    storageBucket: "todolist-14bd8.appspot.com",
   };
 
   firebase.initializeApp(config);
 
   var toDoAppReference = firebase.database();
 
-  // firebase.auth().signInAnonymously().catch(function(error) {
-  //   // Handle Errors here.
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  // });
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      window.uid = user.uid;
+      $('#loginEmail').append(user.email);
+      $('#loginDetails').fadeIn();
+      $('#signout').fadeIn();
+    }
+    getToDoListItems();
+
+  });
 
   $('#registerCreate').click(function(event) {
       var name = $('#registerName').val();
@@ -78,11 +83,18 @@ $(document).ready(function() {
       event.preventDefault();
       var toDoItem = $('#toDoItem').val();
       $('#toDoItem').val('');
-      var dataReference = toDoAppReference.ref('toDo');
+      var dataReference = toDoAppReference.ref('users/' + 'a');
       dataReference.push({
         toDoItem: toDoItem,
         toDoStatus: 'Incomplete'
       })
+
+      function writeUserData(userId, name, email) {
+        firebase.database().ref('users/' + userId).set({
+          username: name,
+          email: email
+        });
+      }
   });
 
   $('#toDoForm').keypress(function(event) {
@@ -91,12 +103,20 @@ $(document).ready(function() {
       event.preventDefault();
       var toDoItem = $('#toDoItem').val()
       $('#toDoItem').val('')
-      var dataReference = toDoAppReference.ref('toDo');
+      var dataReference = toDoAppReference.ref('toDo/users/' + uid);
       dataReference.push({
         toDoItem: toDoItem,
         toDoStatus: 'Incomplete'
       })
     }
+
+    function writeUserData(userId, name, email) {
+      firebase.database().ref('users/' + userId).set({
+        username: name,
+        email: email
+      });
+    }
+
 });
 
   $('#toDoList').on('click', 'li .delete', function(event) {
@@ -128,9 +148,23 @@ $(document).ready(function() {
 
   });
 
+  $('#signout').on('click', function(event) {
+    event.preventDefault();
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      console.log('logged out');
+      window.location = '/login.html';
+
+    }, function(error) {
+      // An error happened.
+    });
+  });
+
+
+
   function getToDoListItems() {
 
-    toDoAppReference.ref('toDo').on('value', function(results) {
+    toDoAppReference.ref('toDo/users/' + uid).on('value', function(results) {
 
       $('#toDoList li').remove();
 
@@ -202,7 +236,5 @@ $(document).ready(function() {
     var totalProgress = toDoProgress/toDoCount * 100;
     $('#progressBar').animate({width: (totalProgress) + '%' }, 500);
   }
-
-  getToDoListItems();
 
 });
