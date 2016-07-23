@@ -209,13 +209,22 @@ li.personal:last-child {
   text-decoration: none;
 }
 .form .register-form {
-  display: block;
+  display: none;
 }
 .form .login-form {
-  display: none;
+  display: block;
 }
 
 #registerError {
+  font-size: 11px;
+  font-weight: bold;
+  text-align: left;
+  display: none;
+  margin-bottom: 13px;
+  color: #EE3B33;
+}
+
+#loginError {
   font-size: 11px;
   font-weight: bold;
   text-align: left;

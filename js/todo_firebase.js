@@ -23,13 +23,6 @@ $(document).ready(function() {
   //   var errorMessage = error.message;
   // });
 
-  // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   console.log(errorCode);
-  //   console.log(errorMessage);
-  // });
-
   $('#registerCreate').click(function(event) {
       var name = $('#registerName').val();
       var email = $('#registerEmailAddress').val();
@@ -51,10 +44,35 @@ $(document).ready(function() {
       });
   });
 
-  // firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  // });
+  $('#loginBtn').click(function(event) {
+      var email = $('#loginEmailAddress').val();
+      var password = $('#loginPassword').val();
+      $('#loginEmailAddress').val('');
+      $('#loginPassword').val('');
+      console.log(password);
+      console.log(email);
+      event.preventDefault();
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        $('#loginError').show();
+        $('#loginError').append(errorMessage)
+      });
+  });
+
+  $('#signIn').click(function(event) {
+    event.preventDefault();
+    $('.register-form').hide();
+    $('.login-form').fadeIn();
+    console.log('signIn clicked');
+  })
+
+  $('#createAccount').click(function(event) {
+    event.preventDefault();
+    $('.login-form').hide();
+    $('.register-form').fadeIn();
+    console.log('signIn clicked');
+  })
 
   $('#toDoForm').submit(function(event) {
       event.preventDefault();
