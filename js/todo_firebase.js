@@ -3,6 +3,14 @@ var template = Handlebars.compile(source);
 
 $('#popUp').removeClass('hidden');
 
+$('#logo').click(function () {
+  $('#tttContainer').fadeIn();
+});
+
+$('.closeBtn').click(function () {
+  $('#tttContainer').fadeOut();
+});
+
 $(document).ready(function() {
 
   // Initialize Firebase
@@ -25,7 +33,6 @@ $(document).ready(function() {
       $('#signout').fadeIn();
     }
     getToDoListItems();
-
   });
 
   $('#registerCreate').click(function(event) {
@@ -152,7 +159,6 @@ $(document).ready(function() {
     event.preventDefault();
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
-      console.log('logged out');
       window.location = '/login.html';
 
     }, function(error) {
@@ -234,6 +240,17 @@ $(document).ready(function() {
     var toDoCount = $("#toDoList li").length * 10;
     var totalProgress = toDoProgress/toDoCount * 100;
     $('#progressBar').animate({width: (totalProgress) + '%' }, 500);
+  }
+
+  function sendEmailVerification() {
+    // [START sendemailverification]
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+      // Email Verification sent!
+      // [START_EXCLUDE]
+      alert('Email Verification Sent!');
+      // [END_EXCLUDE]
+    });
+    // [END sendemailverification]
   }
 
 });

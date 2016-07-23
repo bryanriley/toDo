@@ -31,26 +31,26 @@
     </div>
 
     <div id="content">
+      <div id="welcome">Welcome to Sapphire - To Do List.</div>
       <div id="login">
-
         <div class="form">
           <form class="register-form">
             <input id="registerName" type="text" placeholder="name"/>
-            <input id="registerPassword" type="password" placeholder="password"/>
             <input id="registerEmailAddress" type="text" placeholder="email address"/>
+            <input id="registerPassword" type="password" placeholder="password"/>
             <div id="registerError"></div>
             <button id="registerCreate">Create</button>
             <p class="message">Already registered? <a id="signIn" href="#">Sign In</a></p>
           </form>
           <form class="login-form">
+            <div id="loggedOut">You are currently not logged in, please enter your details, or <a id="createAccount"  href="#">Create an account</a></div>
             <input id="loginEmailAddress" type="text" placeholder="email address"/>
             <input id="loginPassword" type="password" placeholder="password"/>
             <div id="loginError"></div>
             <button id="loginBtn">Login</button>
-            <p class="message">Not registered? <a id="createAccount"  href="#">Create an account</a></p>
+            <!-- <p class="message">Not registered? </p> -->
           </form>
         </div>
-
       </div>
     </div>
 

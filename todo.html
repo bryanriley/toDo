@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,62 +11,122 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/todo.css" rel="stylesheet">
+    <link href="css/tictactoe.css" rel="stylesheet">
 
     <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css" />
 
-  </head>
-  <body>
+</head>
+
+<body>
 
     <nav>
-      <span id="loginDetails">You are logged in as <span id="loginEmail"></span></span>
-      <a href="#" id="signout">Signout</a>
+        <span id="loginDetails">You are logged in as <span id="loginEmail"></span></span>
+        <a href="#" id="signout">Signout</a>
     </nav>
 
     <div id="subheader">
-      <ul>
-        <li class="aqua">
-          <div id="logo"></div>
-        </li>
-      </ul>
+        <ul>
+            <li class="aqua">
+                <div id="logo"></div>
+            </li>
+        </ul>
+    </div>
+
+    <div id="tttContainer">
+      <div id="tictactoe">
+          <div class="boxes">
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="box">
+                  <span class="x">X</span>
+                  <span class="o">O</span>
+              </div>
+              <div class="red-line top-hor"></div>
+              <div class="red-line mid-hor"></div>
+              <div class="red-line bottom-hor"></div>
+              <div class="red-line left-vert"></div>
+              <div class="red-line mid-vert"></div>
+              <div class="red-line right-vert"></div>
+              <div class="red-line ltr-diag"></div>
+              <div class="red-line rtl-diag"></div>
+
+              <div class="x-wins js-wins">X Wins!<span> Play Again?</span></div>
+              <div class="o-wins js-wins">O Wins!<span> Play Again?</span></div>
+          </div>
+          <button class="reset">Reset</button>
+          <button class="closeBtn">Close</button>
+
+      </div>
     </div>
 
     <div id="content">
-      <div id="col1">
+        <div id="col1">
 
-        <div id="todoAdd">
-          <h1>Add To-Do List Item</h1>
+            <div id="todoAdd">
+                <h1>Add To-Do List Item</h1>
 
-          <form id="toDoForm">
-            <input id="toDoItem" placeholder="Enter a To-Do list item" autocomplete="off"/>
-            <input id="toDoItemButton" type="submit" value="Add"></submit>
-          </form>
+                <form id="toDoForm">
+                    <input id="toDoItem" placeholder="Enter a To-Do list item" autocomplete="off" />
+                    <input id="toDoItemButton" type="submit" value="Add">
+                    </submit>
+                </form>
+
+            </div>
+
+            <div id="todoProgress">
+                <h1>Progress</h1>
+                <div id="progressContainer">
+                    <div id="progressBar"></div>
+                </div>
+
+            </div>
+
+            <div id="popUp" class="loader hidden"></div>
+
+            <ul id="toDoList"></ul>
 
         </div>
-
-        <div id="todoProgress">
-          <h1>Progress</h1>
-          <div id="progressContainer">
-            <div id="progressBar"></div>
-          </div>
-
-        </div>
-
-        <div id="popUp" class="loader hidden"></div>
-
-        <ul id="toDoList"></ul>
-
-      </div>
 
     </div>
 
     <script id="toDoTemplate" type="text/x-handlebars-template">
-      <li class="personal">
-        <div class="number">{{itemNumber}}</div>
-        <div class="todoItem">{{toDo}}</div>
-        <a href="#" class="delete"></a>
-        <a href="#" class="status incomplete"></a>
-      </li>
+        <li class="personal">
+            <div class="number">{{itemNumber}}</div>
+            <div class="todoItem">{{toDo}}</div>
+            <a href="#" class="delete"></a>
+            <a href="#" class="status incomplete"></a>
+        </li>
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -73,6 +134,8 @@
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
     <script src="js/todo_firebase.js"></script>
+    <script src="js/tictactoe.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
-  </body>
+</body>
+
 </html>

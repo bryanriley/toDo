@@ -164,8 +164,8 @@ li.personal:last-child {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 360px;
-  margin: 100px auto 100px;
+  max-width: 100%;
+  margin: 50px auto 100px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.1);
@@ -259,4 +259,65 @@ li.personal:last-child {
   position: absolute;
   color: #81C4F2;
   display: none;
+}
+
+#loggedOut {
+  font-family: "Arial", sans-serif;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#loggedOut a{
+  font-weight: bold;
+  color: #81C4F2;
+}
+
+#welcome {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background: #EEE;
+  font-family: "Arial", sans-serif;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin-top: 100px;
+}
+
+#signedOut {
+  width: 80%;
+  height: 50px;
+  line-height: 50px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  position: absolute;
+  top: -50px;
+}
+
+#tttContainer {
+  width: 450px;
+  height: auto;
+  background: rgba(255,255,255,0.9);
+  border-radius: 10px;
+  display: none;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 5;
+}
+
+@media (max-width: 600px) {
+
+  #todoAdd input {
+    width: 80%;
+  }
+
+  .todoItem {
+    width: 55%;
+  }
 }
