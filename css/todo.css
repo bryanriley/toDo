@@ -1,7 +1,7 @@
 /* TO DO */
 
 #subnav.todo {
-  background: #77E3E2;
+  background: #81C4F2;
 }
 
 #todoAdd {
@@ -31,9 +31,9 @@
   width: auto;
   height 35px;
   padding: 0 10px;
-  color: #333;
+  color: #FFF;
   border-radius: 5px;
-  background: #77E3E2;
+  background: #81C4F2;
   float: right;
 
   -webkit-transition: all 0.2s ease;
@@ -44,7 +44,7 @@
 }
 
 #todoAdd #toDoItemButton:hover {
-  background: #2AB8B7;
+  background: #58B0E0;
 }
 
 #todoProgress {
@@ -71,7 +71,7 @@
 #progressBar {
   height: 10px;
   width: 0%;
-  background: #77E3E2;
+  background: #81C4F2;
 }
 
 #col1 {
@@ -87,7 +87,7 @@ ul#toDoList {
 }
 
 li.personal {
-  background-color: #77E3E2;
+  background-color: #81C4F2;
   min-height: 50px;
   margin-bottom: 1px;
   list-style: none;
@@ -147,7 +147,7 @@ li.personal:last-child {
   opacity: 0.8;
   position: absolute;
   width: 90%;
-  height: 60%;
+  height: 40%;
   background: #FFF;
   margin: 0 auto;
 }

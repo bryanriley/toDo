@@ -13,123 +13,30 @@ nav {
 }
 
 #subheader ul {
-  width: auto;
-  height: 60px;
-  right: 0;
-  padding: 20px 5% 0 0;
+  width: 100%;
+  height: 120px;
   list-style: none;
+  margin: 0;
+  padding: 0;
   position: absolute;
+  overflow: hidden;
 }
 
 #subheader ul li {
-  width: 30px;
-  height: 30px;
-  padding: 10px;
-  margin: 3px;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: inline-block;
-  cursor: pointer;
-  -webkit-filter: grayscale(90%);
-  filter: grayscale(90%);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-#subheader ul li.onyx {
-  background: url('../images/onyx.svg');
-  background-size: cover;
-  opacity: 0.7;
-}
-
-#subheader ul li.onyx:hover {
-  opacity: 1;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-#subheader ul li.emerald {
-  background: url('../images/emerald.svg');
-  background-size: cover;
-}
-
-#subheader ul li.emerald:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-#subheader ul li.citrine {
-  background: url('../images/citrine.svg');
-  background-size: cover;
-}
-
-#subheader ul li.citrine:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-#subheader ul li.sapphire {
-  background: url('../images/sapphire.svg');
-  background-size: cover;
-}
-
-#subheader ul li.sapphire:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-#subheader ul li.ruby {
-  background: url('../images/ruby.svg');
-  background-size: cover;
-}
-
-#subheader ul li.ruby:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-#subheader ul li.topaz {
-  background: url('../images/topaz.svg');
-  background-size: cover;
-}
-
-#subheader ul li.topaz:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
 }
 
 #subheader ul li.aqua {
-  background: url('../images/aqua.svg');
+  width: 100%;
+  height: 100%;
+  background: url('../images/header.svg');
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #subheader ul li.aqua:hover {

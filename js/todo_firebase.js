@@ -149,7 +149,7 @@ $(document).ready(function() {
     var toDoProgress = $("li.completed").length * 10;
     var toDoCount = $("#toDoList li").length * 10;
     var totalProgress = toDoProgress/toDoCount * 100;
-    $('#progressBar').animate({width: (totalProgress) + '%' }, 1000);
+    $('#progressBar').animate({width: (totalProgress) + '%' }, 500);
   }
 
   getToDoListItems();
