@@ -8,7 +8,7 @@
   width: 100%;
   background: #EEE;
   border-radius: 5px;
-  margin: 30px 0;
+  margin: 100px 0 30px 0;
   padding: 20px;
   display: block;
 }
@@ -168,7 +168,7 @@ li.personal:last-child {
   margin: 100px auto 100px;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .form input {
   font-family: Arial, sans-serif;

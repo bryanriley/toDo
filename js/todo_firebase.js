@@ -107,7 +107,7 @@ $(document).ready(function() {
       dataReference.push({
         toDoItem: toDoItem,
         toDoStatus: 'Incomplete'
-      })
+      });
     }
 
     function writeUserData(userId, name, email) {
@@ -160,8 +160,6 @@ $(document).ready(function() {
     });
   });
 
-
-
   function getToDoListItems() {
 
     toDoAppReference.ref('toDo/users/' + uid).on('value', function(results) {
@@ -172,6 +170,7 @@ $(document).ready(function() {
         var toDoItem = firebaseData.val().toDoItem;
         var toDoStatus = firebaseData.val().toDoStatus;
         var toDoNumber = 1;
+
         var toDoData = {
           toDo: toDoItem,
           itemNumber: toDoNumber
@@ -193,21 +192,21 @@ $(document).ready(function() {
   }
 
   function updateCompleteMessage(id, toDoStatus) {
-    var toDoReference =  toDoAppReference.ref('toDo').child(id);
+    var toDoReference =  toDoAppReference.ref('toDo/users/' + uid).child(id);
     toDoReference.update({
       toDoStatus: 'Complete'
     })
   }
 
   function updateIncompleteMessage(id, toDoStatus) {
-    var toDoReference =  toDoAppReference.ref('toDo').child(id);
+    var toDoReference =  toDoAppReference.ref('toDo/users/' + uid).child(id);
     toDoReference.update({
       toDoStatus: 'Incomplete'
     })
   }
 
   function deleteMessage(id) {
-    var toDoReference = toDoAppReference.ref('toDo/' + id)
+    var toDoReference = toDoAppReference.ref('toDo/users/' + uid).child(id);
     toDoReference.remove();
   }
 
