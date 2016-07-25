@@ -90,7 +90,7 @@ $(document).ready(function() {
       event.preventDefault();
       var toDoItem = $('#toDoItem').val();
       $('#toDoItem').val('');
-      var dataReference = toDoAppReference.ref('users/' + 'a');
+      var dataReference = toDoAppReference.ref('toDo/users/' + uid);
       dataReference.push({
         toDoItem: toDoItem,
         toDoStatus: 'Incomplete'
@@ -159,7 +159,7 @@ $(document).ready(function() {
     event.preventDefault();
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
-      window.location = '/login.html';
+      window.location = 'login.html';
 
     }, function(error) {
       // An error happened.
